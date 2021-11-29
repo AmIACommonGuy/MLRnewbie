@@ -1,0 +1,23 @@
+Package: MLRneebie
+Type: Package
+Title: Mutiple Linear Regression For Beginner 
+Version: 0.1.0
+Author: Ziming Huang
+Maintainer: Ziming Huang <ziming@umich.edu>
+Description: Provides functionality for conducting mutiple linear regression
+    analysis. The packages contains functions that can carry out model construction,
+    residual calculation, and model sum of squares summarization.
+License: GPL-2
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.2
+Suggests: 
+    knitr,
+    rmarkdown,
+    bench,
+    tidyr,
+    ggbeeswarm,
+    ggplot2,
+    testthat (>= 3.0.0)
+VignetteBuilder: knitr
+Config/testthat/edition: 3

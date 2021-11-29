@@ -1,0 +1,133 @@
+---
+title: "MLRneebie_vignette"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{MLRneebie_vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+```
+
+```{r setup}
+library(bench)
+library(tidyr)
+library(ggbeeswarm)
+library(ggplot2)
+library(MLRneebie)
+```
+
+## Function Usage Demonstration
+```{r}
+## Import data set
+mc <- mtcars
+```
+```{r}
+## Multiple linear regression with intercept
+## We choose "cyl", "disp","hp" in mtcars as X, and "mpg" as Y.
+model_car <- linearRegression(data = mc, 
+                              predictors = c("cyl", "disp","hp"),
+                              response = "mpg"
+                              )
+```
+```{r}
+## Calculating useful residuals. From the left to right, they are Residual, Std_Residual, and Studentized_Residual.
+head(model_residuals(model_car))
+```
+```{r}
+## All three sum of squares of the linear regression model
+ssmodel(model_car)
+```
+
+```{r}
+model_lm <- lm(data = mc, formula = mpg~cyl+disp+hp)
+summary(model_lm)
+```
+
+```{r}
+anova(model_lm)
+```
+
+## Correctness and Efficiency Check
+
+```{r}
+### Simulate data
+set.seed(777)
+#Generate the independent variable and the error
+x1=rnorm(50000,100,16)
+x2=rnorm(50000,200,36)
+error=rnorm(50000,0,25)
+#Generate the dependent variable (b0=150, b1=-4, b2=2.5)
+y1=200-(5*x1)+(10*x2)+error
+
+testdata <- as.data.frame(cbind(y1,x1,x2))
+```
+
+#### Model Construction
+```{r}
+## The regression function in MLRneebie
+model_nb <- linearRegression(data = testdata, 
+                             predictors = c("x1","x2"),
+                             response = "y1")
+cat("")
+
+## The base regression function
+model_base <- lm(data=testdata, formula =  y1~x1+x2)
+summary(model_base)
+```
+#### Regression Correctness and Efficiency
+```{r}
+## Due to rounding error in different calculation, we will only save up to 10 digits.
+all.equal(round(model_nb[[1]][,1], digits=10),
+          round(model_base$coefficients, digits=10))
+cat("")
+bm <- bench::mark(round(model_nb[[1]][,1], digits=10),
+            round(model_base$coefficients, digits=10))
+summary(bm)
+plot(bm)
+```
+
+#### Comparing Residual Function
+Note that there is no such function in base R, so it is meaning less to compare efficiency.
+Plus, base R does not have a standard residual function and we know that the model is corrected established from the previous code (same MSE). So standard residual should be correct as long as the residuals are the same.
+```{r}
+## Correctness Check
+all.equal(round(model_residuals(model_car)[,3],digits=10), 
+          round(rstandard(model_lm),digits = 10))
+all.equal(round(model_residuals(model_car)[,1],digits=10), 
+          round(model_lm$residuals,digits = 10))
+
+## Benchmark
+bm2 <- bench::mark(round(model_residuals(model_car)[,3],digits=10),round(rstandard(model_lm),digits = 10))
+summary(bm2)
+plot(bm2)
+```
+
+#### Sum of Square check
+There is no sum function in base R, and my function only read off numbers from the model. So there is no point checking efficiency since its complexity will be O(1).
+```{r}
+## Correctness check
+anova(model_lm)
+anr <- c(sum(anova(model_lm)$"Sum Sq"[-4]),
+         anova(model_lm)$"Sum Sq"[4],
+         anova(model_lm)$"Sum Sq"[4]+sum(anova(model_lm)$"Sum Sq"[-4]))
+ssmr <- unname(ssmodel(model_car)[,1])
+all.equal(anr,ssmr)
+```
+
+
+
+
+
+
+
+
+
+
+
