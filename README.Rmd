@@ -22,9 +22,5 @@ The goal of MLRnewbie is to provides functionality for conducting multiple linea
 
 This is a basic example which shows you how to solve a common problem:
 
-```{r example}
-library(MLRnewbie)
-## basic example code
-```
 
 
