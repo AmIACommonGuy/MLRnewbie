@@ -138,7 +138,7 @@ ssmodel <- function(model) {
         df <- c(p-1, n-p, n-1)
     } else {
         ## Note the degree of freedon can be meaningless here
-        ST <- t(Y)%*%(Y)
+        SST <- t(Y)%*%(Y)
         df <- c(p, n-p, n)
     }
     ##This might cause rounding error

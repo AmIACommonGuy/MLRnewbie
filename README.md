@@ -4,8 +4,6 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/AmIACommonGuy/MLRnewbie/workflows/R-CMD-check/badge.svg)](https://github.com/AmIACommonGuy/MLRnewbie/actions)
-
-[![codecov](https://codecov.io/gh/AmIACommonGuy/MLRnewbie/branch/main/graph/badge.svg?token=P9T8UX5W02)](https://codecov.io/gh/AmIACommonGuy/MLRnewbie)
 <!-- badges: end -->
 
 The goal of MLRnewbie is to provides functionality for conducting
