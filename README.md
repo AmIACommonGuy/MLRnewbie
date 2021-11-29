@@ -1,6 +1,4 @@
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
 # MLRneebie
 
 <!-- badges: start -->
@@ -9,15 +7,7 @@
 The goal of MLRneebie is to provides functionality for conducting
 multiple linear regression analysis. The packages contains functions
 that can carry out model construction, residual calculation, and model
-sum of squares summarization.
-
-## Installation
-
-You can install the development version of MLRneebie like so:
-
-``` r
-# FILL THIS IN! HOW CAN PEOPLE INSTALL YOUR DEV PACKAGE?
-```
+sum of squares summary.
 
 ## Example
 
