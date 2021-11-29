@@ -16,13 +16,46 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/AmIACommonGuy/MLRnewbie/workflows/R-CMD-check/badge.svg)](https://github.com/AmIACommonGuy/MLRnewbie/actions)
+
+[![codecov](https://codecov.io/gh/AmIACommonGuy/MLRnewbie/branch/main/graph/badge.svg?token=P9T8UX5W02)](https://codecov.io/gh/AmIACommonGuy/MLRnewbie)
 <!-- badges: end -->
 
 The goal of MLRnewbie is to provides functionality for conducting multiple linear regression analysis. The packages contains functions that can carry out model construction, residual calculation, and model sum of squares summary.
 
-## Example
+## Functions
+There are 3 functios:  
+* `linearRegression()` Generate linear model.  
+* `model_residuals()` Calculate linear model's residuals, including studentized residuals.  
+* `ssmodel()` Summary SSR, SSE, and SSY for the linear model. 
 
-This is a basic example which shows you how to solve a common problem:
+## Example
+```{r}
+## Import the library
+library(MLRnewbie)
+
+## Import data set
+mc <- mtcars
+```
+
+```{r}
+## Multiple linear regression with intercept
+## We choose "cyl", "disp","hp" in mtcars as X, and "mpg" as Y.
+model_car <- linearRegression(data = mc, 
+                              predictors = c("cyl", "disp","hp"),
+                              response = "mpg")
+```
+
+```{r}
+## Calculating useful residuals. From the left to right, they are Residual, Std_Residual, and Studentized_Residual.
+head(model_residuals(model_car))
+```
+
+```{r}
+## All three sum of squares of the linear regression model
+ssmodel(model_car)
+```
+
+
 
 
 
