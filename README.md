@@ -2,6 +2,8 @@
 # MLRnewbie
 
 <!-- badges: start -->
+
+[![R-CMD-check](https://github.com/AmIACommonGuy/MLRnewbie/workflows/R-CMD-check/badge.svg)](https://github.com/AmIACommonGuy/MLRnewbie/actions)
 <!-- badges: end -->
 
 The goal of MLRnewbie is to provides functionality for conducting
