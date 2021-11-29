@@ -1,8 +1,8 @@
 ---
-title: "MLRneebie_vignette"
+title: "MLRnewbie_vignette"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{MLRneebie_vignette}
+  %\VignetteIndexEntry{MLRnewbie_vignette}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -20,7 +20,7 @@ library(bench)
 library(tidyr)
 library(ggbeeswarm)
 library(ggplot2)
-library(MLRneebie)
+library(MLRnewbie)
 ```
 
 ## Function Usage Demonstration
@@ -71,7 +71,7 @@ testdata <- as.data.frame(cbind(y1,x1,x2))
 
 #### Model Construction
 ```{r}
-## The regression function in MLRneebie
+## The regression function in MLRnewbie
 model_nb <- linearRegression(data = testdata, 
                              predictors = c("x1","x2"),
                              response = "y1")

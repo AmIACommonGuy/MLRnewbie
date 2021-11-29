@@ -1,10 +1,10 @@
 
-# MLRneebie
+# MLRnewbie
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of MLRneebie is to provides functionality for conducting
+The goal of MLRnewbie is to provides functionality for conducting
 multiple linear regression analysis. The packages contains functions
 that can carry out model construction, residual calculation, and model
 sum of squares summary.
@@ -14,6 +14,6 @@ sum of squares summary.
 This is a basic example which shows you how to solve a common problem:
 
 ``` r
-library(MLRneebie)
+library(MLRnewbie)
 ## basic example code
 ```

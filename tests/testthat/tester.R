@@ -9,7 +9,7 @@ testthat::test_that("model w interaction", {
 
     testdata <- as.data.frame(cbind(y1,x1,x2,x3))
 
-    ## The regression function in MLRneebie
+    ## The regression function in MLRnewbie
     model_nb <- linearRegression(data = testdata,
                                  predictors = c("x1","x2","x3"),
                                  response = "y1")
