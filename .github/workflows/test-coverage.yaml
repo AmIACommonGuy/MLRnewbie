@@ -28,6 +28,3 @@ jobs:
       - name: Test coverage
         run: covr::codecov()
         shell: Rscript {0}
-
-codecov:
-  token: 0aeaad16-e897-4d70-8714-7f4876ca39bb
