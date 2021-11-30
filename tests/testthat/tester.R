@@ -47,10 +47,10 @@ testthat::test_that("model wo interaction", {
 
 testthat::test_that("resNss", {
     #Generate the independent variable and the error
-    x1=rnorm(50000,100,16)
-    x2=rnorm(50000,200,36)
-    x3=rnorm(50000,300,25)
-    error=rnorm(50000,0,25)
+    x1=rnorm(5000,100,16)
+    x2=rnorm(5000,200,36)
+    x3=rnorm(5000,300,25)
+    error=rnorm(5000,0,25)
     #Generate the dependent variable (b0=150, b1=-4, b2=2.5)
     y1=200-(5*x1)+(10*x2)+x3+error
 
@@ -63,6 +63,13 @@ testthat::test_that("resNss", {
                                  FALSE)
     ## The base regression function
     model_base <- lm(data=testdata, formula =  y1~-1+x1+x2+x3)
+    ## Residual
+    nbr <- model_residuals(model_nb)
+    basers <- rstandard(model_base)
+    all.equal(round(nbr[,3],digits=10),
+              round(basers,digits = 10))
+    all.equal(round(nbr [,1],digits=10),
+              round(model_base$residuals,digits = 10))
 
     anr <- c(sum(anova(model_base)$"Sum Sq"[-4]),
              anova(model_base)$"Sum Sq"[4],
@@ -74,10 +81,10 @@ testthat::test_that("resNss", {
 
 testthat::test_that("resNss", {
     #Generate the independent variable and the error
-    x1=rnorm(50000,100,16)
-    x2=rnorm(50000,200,36)
-    x3=rnorm(50000,300,25)
-    error=rnorm(50000,0,25)
+    x1=rnorm(5000,100,16)
+    x2=rnorm(5000,200,36)
+    x3=rnorm(5000,300,25)
+    error=rnorm(5000,0,25)
     #Generate the dependent variable (b0=150, b1=-4, b2=2.5)
     y1=200-(5*x1)+(10*x2)+x3+error
 
@@ -90,6 +97,15 @@ testthat::test_that("resNss", {
                                  )
     ## The base regression function
     model_base <- lm(data=testdata, formula =  y1~x1+x2+x3)
+
+    ## Residual
+    nbr <- model_residuals(model_nb)
+    basers <- rstandard(model_base)
+    all.equal(round(nbr[,3],digits=10),
+              round(basers,digits = 10))
+    all.equal(round(nbr [,1],digits=10),
+              round(model_base$residuals,digits = 10))
+    ## SS
 
     anr <- c(sum(anova(model_base)$"Sum Sq"[-4]),
              anova(model_base)$"Sum Sq"[4],
