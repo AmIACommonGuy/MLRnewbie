@@ -19,7 +19,7 @@ There are 3 functios:
 \* `linearRegression()` Generate linear model.  
 \* `model_residuals()` Calculate linear model’s residuals, including
 studentized residuals.  
-\* `ssmodel()` Summary SSR, SSE, and SSY for the linear model.
+\* `ssmodel()` Summarize SSR, SSE, and SSY for the linear model.
 
 ## Example
 
